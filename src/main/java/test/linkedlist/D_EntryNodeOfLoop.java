@@ -1,8 +1,12 @@
 package test.linkedlist;
 
+import java.util.HashMap;
+import java.util.HashSet;
+
 /**
  * @author chen
  * @crete 2022-03-11-21:00
+ *  链表中环的入口结点
  */
 public class D_EntryNodeOfLoop {
 
@@ -72,6 +76,18 @@ public class D_EntryNodeOfLoop {
         }
 
         return null;
+    }
+
+    //Hash方法
+    public static ListNode EntryNodeOfLoop_Hash(ListNode pHead) {
+
+        HashSet<ListNode> hashSet = new HashSet();
+        hashSet.add(null);
+        while (!hashSet.contains(pHead)){
+            hashSet.add(pHead);
+            pHead=pHead.next;
+        }
+        return pHead;
     }
 }
 

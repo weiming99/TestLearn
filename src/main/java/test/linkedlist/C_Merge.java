@@ -3,6 +3,7 @@ package test.linkedlist;
 /**
  * @author chen
  * @crete 2022-03-10-23:03
+ * 合并两张链表
  */
 public class C_Merge {
 
@@ -21,6 +22,7 @@ public class C_Merge {
         System.out.println();
     }
 
+    //双指针
     public static ListNode Merge(ListNode list1, ListNode list2) {
         ListNode head = new ListNode(0);
         ListNode result = head;
@@ -42,6 +44,7 @@ public class C_Merge {
         return result.next;
     }
 
+    //递归
     public static ListNode Merge_recursive(ListNode list1,ListNode list2) {
         if (list1==null) {
             return list2;
