@@ -89,6 +89,19 @@ public class D_EntryNodeOfLoop {
         }
         return pHead;
     }
+
+    //Hash方法
+    public static ListNode EntryNodeOfLoop_Hash_new(ListNode pHead) {
+        HashSet<ListNode> hashSet = new HashSet();
+        while ( pHead != null) {
+            if (!hashSet.add(pHead)) {
+                return pHead;
+            }
+            pHead=pHead.next;
+        }
+        return  null;
+    }
+
 }
 
 

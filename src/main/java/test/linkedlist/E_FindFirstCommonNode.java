@@ -25,7 +25,7 @@ public class E_FindFirstCommonNode {
         ListNode listNode6 = new ListNode(5);
         listNode5.next=listNode6;
         listNode6.next=listNode3;
-        ListNode listNode7 = FindFirstCommonNode_difference(listNode, listNode5);
+        ListNode listNode7 = FindFirstCommonNode_equivalent_new(listNode, listNode5);
         System.out.println();
 
     }
@@ -48,6 +48,20 @@ public class E_FindFirstCommonNode {
         }
         return null;
     }
+
+    //set
+    public static ListNode FindFirstCommonNode_set_new(ListNode pHead1, ListNode pHead2) {
+        HashSet<ListNode> hashSet = new HashSet<>();
+        while (pHead1!=null) {
+            hashSet.add(pHead1);
+            pHead1=pHead1.next;
+        }
+        while (pHead2!=null&&!hashSet.contains(pHead2)){
+            pHead2=pHead2.next;
+        }
+        return pHead2;
+    }
+
 
     //栈
     public static ListNode FindFirstCommonNode_stack(ListNode pHead1, ListNode pHead2) {
@@ -72,6 +86,28 @@ public class E_FindFirstCommonNode {
             }
         }
         return null;
+    }
+
+    //栈
+    public static ListNode FindFirstCommonNode_stack_new(ListNode pHead1, ListNode pHead2) {
+        Stack<ListNode> stack1 = new Stack<>();
+        while (pHead1 != null) {
+            stack1.push(pHead1);
+            pHead1=pHead1.next;
+        }
+        Stack<ListNode> stack2 = new Stack<>();
+        while (pHead2 != null) {
+            stack2.push(pHead2);
+            pHead2=pHead2.next;
+        }
+        ListNode result=null;
+        while (!stack1.isEmpty() && !stack2.isEmpty()) {
+            result=stack1.pop();
+            if (!result.equals(stack2.pop())){
+                return result;
+            }
+        }
+        return result;
     }
 
     //差值
@@ -112,7 +148,70 @@ public class E_FindFirstCommonNode {
         return null;
     }
 
+    //差值
+    public static ListNode FindFirstCommonNode_difference_new(ListNode pHead1, ListNode pHead2) {
+        if (pHead1==null||pHead2==null) {
+            return null;
+        }
+        int i=0;
+        int z=0;
+        ListNode result=pHead1;
+        while (result != null) {
+            i++;
+            result=result.next;
+        }
+        result=pHead2;
+        while (result != null) {
+            z++;
+            result=result.next;
+        }
+        int  a=i-z;
+        if (a>0){
+            for (int j = 0; j < a; j++) {
+                pHead1=pHead1.next;
+            }
+        }else{
+            for (int j = 0; j < -a; j++) {
+                pHead2=pHead2.next;
+            }
+        }
+
+        while (pHead1 != pHead2) {
+            pHead1=pHead1.next;
+            pHead2=pHead2.next;
+        }
+        return pHead1;
+    }
+
     //等值法
+    public static ListNode FindFirstCommonNode_equivalent(ListNode pHead1, ListNode pHead2) {
+        ListNode result1=pHead1;
+        ListNode result2=pHead2;
+        while (result1 != result2) {
+            if (result1==null){
+                result1=pHead2;
+            }else{
+                result1=result1.next;
+            }
+            if (result2==null){
+                result2=pHead1;
+            }else{
+                result2=result2.next;
+            }
+        }
+        return result1;
+    }
+
+    //等值法
+    public static ListNode FindFirstCommonNode_equivalent_new(ListNode pHead1, ListNode pHead2) {
+        ListNode result1=pHead1;
+        ListNode result2=pHead2;
+        while (result1 != result2) {
+            result1 = result1==null? pHead2 : result1.next;
+            result2 = result2==null? pHead1 : result2.next;
+        }
+        return result1;
+    }
 
 
 }
