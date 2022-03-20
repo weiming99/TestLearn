@@ -57,9 +57,6 @@ public class A_ReverseList {
         return pre;
     }
 
-
-
-
     public static ListNode learnStack(ListNode head) {
         if (head==null){
             return  head;
