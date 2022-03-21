@@ -13,7 +13,8 @@ import java.util.stream.Collectors;
 public class TestHashMap {
 
     public static void main(String[] args) {
-        lamdaTest();
+        System.out.println(null == null);
+//        lamdaTest();
 //        ArrayList<Integer> integers = new ArrayList<>();
 //        integers.add(new Integer(-1));
 //        integers.add(new Integer(0));
